@@ -2,10 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./assets/scss/all.scss";
 
-import Home from "./views/Home";
+import { createHashRouter, RouterProvider } from "react-router";
+import routes from "./route";
+const router = createHashRouter(routes);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Home />
+    <RouterProvider router={router} />
   </StrictMode>,
 );
