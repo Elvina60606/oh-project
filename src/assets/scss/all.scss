@@ -1,3 +1,7 @@
 @use "bootstrap/scss/functions";
 @use "bootstrap" as *;
 @use "./base/reset" as *;
+
+@use "./utils/background" as *;
+@use "./component/button" as *;
+@use "./component/modal" as *;

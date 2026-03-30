@@ -6,11 +6,15 @@ const MainLayout = () => {
   return (
     <>
       <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
-        <Header />
+        <div className="bgLight">
+          <Header />
+        </div>
         <main>
           <Outlet />
         </main>
-        <Footer />
+        <div className="bgLight">
+          <Footer />
+        </div>
       </div>
     </>
   );
