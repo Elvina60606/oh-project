@@ -33,6 +33,7 @@ const FollowUpModal = () => {
                 <button type="button" className="btn btn-success">
                   新增檢驗項目
                 </button>
+                （點擊後跳出check可複選檢查項目）
               </div>
             </div>
             <div className="modal-footer justify-content-center gap-3">

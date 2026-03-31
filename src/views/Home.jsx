@@ -7,11 +7,25 @@ import { openModal } from "../slice/modalSlice";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const handleUpdateFollowUp = () => {
+  const handleAddPreEmploymentData = () => {
+    dispatch(
+      openModal({
+        type: "PRE_EMPLOYMENT_DATA",
+        props: {
+          mode: "add",
+        },
+      }),
+    );
+  };
+
+  const handleUpdateFollowUp = (data) => {
     dispatch(
       openModal({
         type: "FOLLOW_UP",
-        props: "update",
+        props: {
+          mode: "update",
+          data,
+        },
       }),
     );
   };
@@ -41,7 +55,11 @@ const Home = () => {
           </div>
           <div className="col-md-4">
             <div className="d-flex flex-column justify-content-center h-100 gap-2">
-              <button type="button" className="btn btnCheckup">
+              <button
+                type="button"
+                className="btn btnCheckup"
+                onClick={handleAddPreEmploymentData}
+              >
                 <i className="bi bi-file-earmark-medical"></i>
                 <span className="mx-2">新進人員體格檢查</span>
               </button>

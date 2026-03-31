@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import FollowUpModal from "./FollowUpModal";
+import PreEmploymentDataModal from "./preEmploymentData/PreEmploymentDataModal";
 
 const MODAL_COMPONEMT = {
   FOLLOW_UP: FollowUpModal,
+  PRE_EMPLOYMENT_DATA: PreEmploymentDataModal,
 };
 
 const ModalManager = () => {
