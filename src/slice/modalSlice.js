@@ -6,6 +6,7 @@ export const modalSlice = createSlice({
     isOpen: false,
     modalType: null,
     props: {},
+    currentStep: 0,
   },
   reducers: {
     openModal: (state, action) => {
@@ -21,9 +22,13 @@ export const modalSlice = createSlice({
     updateModalProps: (state, action) => {
       state.props = { ...state.props, ...action.payload };
     },
+    setStep: (state, action) => {
+      state.currentStep = action.payload;
+    },
   },
 });
 
-export const { openModal, closeModal, updateModalProps } = modalSlice.actions;
+export const { openModal, closeModal, updateModalProps, setStep } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

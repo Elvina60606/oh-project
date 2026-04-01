@@ -66,7 +66,9 @@ const PhysicalExam = () => {
               身體質量指數 BMI
             </label>
             <input
+              readOnly
               type="number"
+              step="0.1"
               className="form-control"
               id="bmi"
               placeholder="輸入身高體重後將自動帶入"

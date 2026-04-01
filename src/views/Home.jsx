@@ -18,13 +18,12 @@ const Home = () => {
     );
   };
 
-  const handleUpdateFollowUp = (data) => {
+  const handleUpdateFollowUp = () => {
     dispatch(
       openModal({
         type: "FOLLOW_UP",
         props: {
           mode: "update",
-          data,
         },
       }),
     );

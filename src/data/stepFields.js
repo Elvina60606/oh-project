@@ -1,0 +1,28 @@
+export const stepFields = {
+  0: ["checkUpDate", "checkUpCenter", "confirmDateAndCenter"],
+  1: [
+    "physicalExam.height",
+    "physicalExam.weight",
+    "physicalExam.bmi",
+    "physicalExam.waistline",
+    "physicalExam.sbp",
+    "physicalExam.dbp",
+  ],
+  2: [
+    "physicalExam.right_va",
+    "physicalExam.left_va",
+    "physicalExam.right_bcva",
+    "physicalExam.left_bcva",
+    "physicalExam.color_vision",
+    "physicalExamhearing_test",
+  ],
+  3: [
+    "biochemistry.alt",
+    "biochemistry.ac_sugar",
+    "biochemistry.creatinine",
+    "biochemistry.cholesterol",
+    "biochemistry.triglycerides",
+    "biochemistry.hdl",
+    "biochemistry.ldl",
+  ],
+};

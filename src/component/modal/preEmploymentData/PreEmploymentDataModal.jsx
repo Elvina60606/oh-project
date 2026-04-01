@@ -3,9 +3,12 @@ import { useDispatch } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 import { closeModal } from "../../../slice/modalSlice";
 import { emptyPreEmploymentForm } from "../../../data/emptyPreEmploymentForm";
+import { stepFields } from "../../../data/stepFields";
 
 import DateAndCenter from "./DateAndCenter";
 import PhysicalExam from "./PhysicalExam";
+import PhysicalExam2 from "./PhysicalExam2";
+import BiochemistryTest from "./BiochemistryTest";
 
 const PreEmploymentDataModal = () => {
   const dispatch = useDispatch();
@@ -22,8 +25,14 @@ const PreEmploymentDataModal = () => {
     if (currentStep === 0) return;
     setCurrentStep((prev) => prev - 1);
   };
+
+  //最後一頁表單
+  const stepKeys = Object.keys(stepFields).map(Number);
+  const isLastStep = currentStep === Math.max(...stepKeys);
+
   const nextStep = async () => {
-    const isValid = await trigger();
+    const fieldsToValidate = stepFields[currentStep] || [];
+    const isValid = await trigger(fieldsToValidate);
     if (isValid) setCurrentStep((prev) => prev + 1);
   };
 
@@ -51,6 +60,8 @@ const PreEmploymentDataModal = () => {
 
               {currentStep === 0 && <DateAndCenter />}
               {currentStep === 1 && <PhysicalExam />}
+              {currentStep === 2 && <PhysicalExam2 />}
+              {currentStep === 3 && <BiochemistryTest />}
 
               <div className="modal-footer justify-content-center my-3 gap-3">
                 {currentStep === 0 ? (
@@ -70,7 +81,7 @@ const PreEmploymentDataModal = () => {
                     上一步
                   </button>
                 )}
-                {currentStep === 1 ? (
+                {isLastStep ? (
                   <button type="submit" className="btn w-25 btnCheckup">
                     確認
                   </button>
