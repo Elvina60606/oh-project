@@ -11,6 +11,9 @@ const PhysicalExam2 = () => {
   return (
     <>
       <div className="modal-body my-3 mx-md-5">
+        <h5 className="my-2 text-primary">
+          <i className="bi bi-flask me-2"></i>理學檢查
+        </h5>
         <div className="row mb-3">
           <div className="col-md-6">
             <label htmlFor="right_va" className="form-label">

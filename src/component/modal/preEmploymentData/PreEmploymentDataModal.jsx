@@ -9,6 +9,11 @@ import DateAndCenter from "./DateAndCenter";
 import PhysicalExam from "./PhysicalExam";
 import PhysicalExam2 from "./PhysicalExam2";
 import BiochemistryTest from "./BiochemistryTest";
+import BloodTest from "./BloodTest";
+import UrineTest from "./UrineTest";
+import ChestXRay from "./ChestXRay";
+import Suggestion from "./Suggestion";
+import UploadFiles from "./UploadFiles";
 
 const PreEmploymentDataModal = () => {
   const dispatch = useDispatch();
@@ -47,10 +52,8 @@ const PreEmploymentDataModal = () => {
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <div className="modal-layout" tabIndex="-1">
             <div className="modal-box">
-              <div className="modal-header">
-                <h5 className="text-secondary ms-3">
-                  請輸入新進人員體格檢查資料
-                </h5>
+              <div className="modal-header mt-2 mb-3">
+                <h5 className="text-secondary ms-3">新進人員體格檢查資料</h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -62,8 +65,13 @@ const PreEmploymentDataModal = () => {
               {currentStep === 1 && <PhysicalExam />}
               {currentStep === 2 && <PhysicalExam2 />}
               {currentStep === 3 && <BiochemistryTest />}
+              {currentStep === 4 && <BloodTest />}
+              {currentStep === 5 && <UrineTest />}
+              {currentStep === 6 && <ChestXRay />}
+              {currentStep === 7 && <Suggestion />}
+              {currentStep === 8 && <UploadFiles />}
 
-              <div className="modal-footer justify-content-center my-3 gap-3">
+              <div className="modal-footer justify-content-center mt-5 mb-4 gap-3">
                 {currentStep === 0 ? (
                   <button
                     type="button"
@@ -75,7 +83,7 @@ const PreEmploymentDataModal = () => {
                 ) : (
                   <button
                     type="button"
-                    className="btn w-25 btnOutlineCheckup"
+                    className="btn w-25 btnOutlineCheckup text-nowrap"
                     onClick={prevStep}
                   >
                     上一步
@@ -88,7 +96,7 @@ const PreEmploymentDataModal = () => {
                 ) : (
                   <button
                     type="button"
-                    className="btn w-25 btnCheckup"
+                    className="btn w-25 btnCheckup text-nowrap"
                     onClick={(e) => {
                       e.preventDefault();
                       nextStep();

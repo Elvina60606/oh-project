@@ -25,4 +25,14 @@ export const stepFields = {
     "biochemistry.hdl",
     "biochemistry.ldl",
   ],
+  4: [
+    "bloodTest.rbc",
+    "bloodTest.wbc",
+    "bloodTest.hemoglobin",
+    "bloodTest.platelets",
+  ],
+  5: ["urineTest.urine_protein", "urineTest.urine_ob"],
+  6: ["chestXRay"],
+  7: ["suggestion"],
+  8: ["uploadFiles"],
 };
