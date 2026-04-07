@@ -1,11 +1,11 @@
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 const MAX_SIZE = 2 * 1024 * 1024; // 2MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif"];
 
 const UploadFiles = () => {
   const {
-    control,
+    register,
     watch,
     setValue,
     formState: { errors },
@@ -25,45 +25,52 @@ const UploadFiles = () => {
           <i className="bi bi-file-earmark-arrow-up me-2"></i>上傳檔案
         </h5>
         <div className="mb-3">
-          <Controller
-            name="uploadFiles"
-            control={control}
-            rules={{
+          <input
+            id="uploadFiles"
+            type="file"
+            multiple
+            className={`d-none ${errors.uploadFiles ? "is-invalid" : ""}`}
+            {...register("uploadFiles", {
               validate: (files) =>
                 files?.length > 0 || "**請上傳檢查報告之圖片檔",
-            }}
-            render={({ field }) => (
-              <input
-                id="uploadFiles"
-                type="file"
-                multiple
-                className="d-none"
-                onChange={(e) => {
-                  const selectedFiles = Array.from(e.target.files).filter(
-                    (file) => {
-                      if (!ALLOWED_TYPES.includes(file.type)) {
-                        alert(`${file.name} 格式不正確`);
-                        return false;
-                      }
-                      if (file.size > MAX_SIZE) {
-                        alert(`${file.name} 太大，請小於2MB`);
-                        return false;
-                      }
-                      return true;
-                    },
-                  );
+            })}
+            onChange={(e) => {
+              const selectedFiles = Array.from(e.target.files).filter(
+                (file) => {
+                  if (!ALLOWED_TYPES.includes(file.type)) {
+                    alert(`${file.name} 格式不正確`);
+                    return false;
+                  }
+                  if (file.size > MAX_SIZE) {
+                    alert(`${file.name} 太大，請小於2MB`);
+                    return false;
+                  }
+                  return true;
+                },
+              );
 
-                  field.onChange([...(field.value || []), ...selectedFiles]);
-                  e.target.value = "";
-                }}
-              />
-            )}
+              const existingFiles = files;
+
+              const newFiles = selectedFiles.filter(
+                (newFile) =>
+                  !existingFiles.some(
+                    (file) =>
+                      file.name === newFile.name && file.size === newFile.size,
+                  ),
+              );
+
+              setValue("uploadFiles", [...existingFiles, ...newFiles], {
+                shouldValidate: true,
+              });
+
+              e.target.value = "";
+            }}
           />
           <div className="d-md-flex align-items-center">
             <p>
               請上傳體檢報告圖片檔案，檔案大小不得超過 2MB。
               <br />
-              支援的格式為：.jpg、.jpeg、.png、.gif
+              支援格式：JPG、JPEG、PNG、GIF
             </p>
             <label htmlFor="uploadFiles" className="btn btn-success mx-3 my-3">
               新增檔案

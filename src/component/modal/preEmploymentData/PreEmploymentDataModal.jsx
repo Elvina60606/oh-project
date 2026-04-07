@@ -41,8 +41,35 @@ const PreEmploymentDataModal = () => {
     if (isValid) setCurrentStep((prev) => prev + 1);
   };
 
+  // 轉型別工具函數：遞迴轉換 **
+  const convertStringToNumber = (obj) => {
+    if (Array.isArray(obj)) {
+      return obj.map(convertStringToNumber);
+    } else if (obj && typeof obj === "object") {
+      const result = {};
+      for (const key in obj) {
+        result[key] = convertStringToNumber(obj[key]);
+      }
+      return result;
+    } else if (typeof obj === "string") {
+      const num = Number(obj);
+      return obj.trim() !== "" && !isNaN(num) ? num : obj;
+    } else {
+      return obj;
+    }
+  };
+
   const onSubmit = (data) => {
-    console.log("提交資料", data);
+    const formattedData = convertStringToNumber({
+      ...data,
+      bloodTest: {
+        ...data.bloodTest,
+        rbc: data.bloodTest.rbc * 1000000,
+        wbc: data.bloodTest.wbc * 1000000,
+        platelets: data.bloodTest.platelets * 1000,
+      },
+    });
+    console.log("提交資料", formattedData);
     dispatch(closeModal());
   };
 

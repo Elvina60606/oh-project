@@ -19,16 +19,16 @@ const BiochemistryTest = () => {
             </label>
             <input
               type="number"
-              className={`form-control ${errors.physicalExam?.alt ? "is-invalid" : ""} `}
+              className={`form-control ${errors.biochemistry?.alt ? "is-invalid" : ""} `}
               id="alt"
               placeholder="請輸入數值"
-              {...register("physicalExam.alt", {
+              {...register("biochemistry.alt", {
                 required: "**請輸入檢驗數值",
               })}
             />
-            {errors.physicalExam?.alt && (
+            {errors.biochemistry?.alt && (
               <div className="invalid-feedback">
-                {errors.physicalExam?.alt.message}
+                {errors.biochemistry?.alt.message}
               </div>
             )}
           </div>
@@ -38,16 +38,16 @@ const BiochemistryTest = () => {
             </label>
             <input
               type="number"
-              className={`form-control ${errors.physicalExam?.ac_sugar ? "is-invalid" : ""} `}
+              className={`form-control ${errors.biochemistry?.ac_sugar ? "is-invalid" : ""} `}
               id="ac_sugar"
               placeholder="請輸入飯前血糖"
-              {...register("physicalExam.ac_sugar", {
+              {...register("biochemistry.ac_sugar", {
                 required: "**請輸入檢驗數值",
               })}
             />
-            {errors.physicalExam?.ac_sugar && (
+            {errors.biochemistry?.ac_sugar && (
               <div className="invalid-feedback">
-                {errors.physicalExam?.ac_sugar.message}
+                {errors.biochemistry?.ac_sugar.message}
               </div>
             )}
           </div>
@@ -128,7 +128,7 @@ const BiochemistryTest = () => {
               type="number"
               className={`form-control ${errors.biochemistry?.ldl ? "is-invalid" : ""} `}
               id="ldl"
-              placeholder="請輸入三酸甘油酯數值"
+              placeholder="請輸入低密度膽固醇"
               {...register("biochemistry.ldl", {
                 required: "**請輸入檢驗數值",
               })}
