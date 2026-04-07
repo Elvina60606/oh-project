@@ -1,4 +1,4 @@
-export const emptyFollowUpForm = [
+export const followUpForm = [
   {
     system: "physical_exam",
     label: "理學檢查",
@@ -94,5 +94,3 @@ export const emptyFollowUpForm = [
     ],
   },
 ];
-
-//加入unit
