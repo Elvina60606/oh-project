@@ -3,15 +3,17 @@ import { closeModal } from "../../slice/modalSlice";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 
 import { followUpForm } from "../../data/followUpForm";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const FollowUpModal = () => {
   const dispatch = useDispatch();
+  const [noData, setNoData] = useState(false);
 
   const {
-    register,
     control,
+    register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -20,16 +22,13 @@ const FollowUpModal = () => {
   const selectSystem = useWatch({ control, name: "system" });
   const selectCategory = useWatch({ control, name: "category" });
 
-  const seletedSystem = followUpForm.find((s) => s.system === selectSystem);
-  const categories = seletedSystem?.categories || [];
+  const selectedSystem = followUpForm.find((s) => s.system === selectSystem);
+  const categories = selectedSystem?.categories || [];
 
   const selectedCategory = categories.find(
     (c) => c.category === selectCategory,
   );
   const fields = selectedCategory?.fields || [];
-
-  const selectField = useWatch({ control, name: "field" });
-  const selectedField = fields.find((f) => f.name === selectField);
 
   const {
     fields: formFields,
@@ -40,25 +39,34 @@ const FollowUpModal = () => {
     name: "items",
   });
 
-  useEffect(() => {
-    if (!selectedField) return;
+  const handleAppendField = (fieldName) => {
+    const field = fields.find((f) => f.name === fieldName);
+    if (!field) return;
 
-    // 避免重複新增
-    const isExist = formFields.some(
-      (item) => item.field === selectedField.name,
-    );
+    const isExist = formFields.some((item) => item.field === field.name);
     if (isExist) return;
 
     append({
-      field: selectedField.name,
-      label: selectedField.label,
-      unit: selectedField.unit,
+      field: field.name,
+      label: field.label,
+      unit: field.unit,
       value: "",
     });
-  }, [selectedField, append, formFields]);
+    setNoData(false);
+  };
 
-  const onSubmit = (followUpData) => {
-    console.log(followUpData);
+  const onSubmit = (data) => {
+    if (data.items.length === 0) {
+      return setNoData(true);
+    }
+
+    const result = {
+      followUpDate: data.followUpDate,
+      followUpCenter: data.followUpCenter,
+      items: data.items,
+    };
+    console.log(result);
+    dispatch(closeModal());
   };
 
   return (
@@ -100,7 +108,7 @@ const FollowUpModal = () => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${errors.followUpDate ? "is-invalid" : ""}`}
+                  className={`form-control ${errors.followUpCenter ? "is-invalid" : ""}`}
                   id="followUpCenter"
                   placeholder="請輸入醫療機構名稱"
                   {...register("followUpCenter", {
@@ -116,71 +124,56 @@ const FollowUpModal = () => {
               <div className="row mb-3">
                 <div className="mb-3">
                   <select
-                    className={`form-select ${errors.system ? "is-invalid" : ""}`}
+                    className="form-select"
                     id="system"
-                    {...register("system", { required: "**請選擇檢查系統" })}
+                    name="system"
+                    value={selectSystem}
+                    onChange={(e) => setValue("system", e.target.value)}
                   >
-                    <option value="">請選擇檢查系統</option>
+                    <option value="">請選擇檢查類別</option>
                     {followUpForm.map((item) => (
                       <option key={item.system} value={item.system}>
                         {item.label}
                       </option>
                     ))}
                   </select>
-                  {errors.system && (
-                    <div className="invalid-feedback">
-                      {errors.system.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-md-6">
                   <select
-                    className={`form-select ${errors.category ? "is-invalid" : ""}`}
+                    className="form-select"
                     id="category"
-                    {...register("category", {
-                      required: "**請選擇檢查類別",
-                    })}
+                    name="category"
+                    value={selectCategory}
+                    onChange={(e) => setValue("category", e.target.value)}
                   >
-                    <option value="">請選擇檢查類別</option>
+                    <option value="">請選擇檢查項目</option>
                     {categories.map((c) => (
                       <option key={c.category} value={c.category}>
                         {c.label}
                       </option>
                     ))}
                   </select>
-                  {errors.category && (
-                    <div className="invalid-feedback">
-                      {errors.category.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-md-6">
                   <select
-                    className={`form-select ${errors.field ? "is-invalid" : ""}`}
+                    className="form-select"
                     id="field"
-                    {...register("field", {
-                      required: "**請選擇檢查項目",
-                    })}
+                    name="field"
+                    onChange={(e) => handleAppendField(e.target.value)}
                   >
-                    <option value="">請選擇檢查項目</option>
+                    <option value="">請選擇檢查名稱</option>
                     {fields.map((f) => (
                       <option key={f.name} value={f.name}>
                         {f.label}
                       </option>
                     ))}
                   </select>
-                  {errors.field && (
-                    <div className="invalid-feedback">
-                      {errors.field.message}
-                    </div>
-                  )}
                 </div>
-                //研究這一段 //刪除最後一筆 // 顯示error
+                {noData && <p className="text-danger my-3">**請輸入檢查結果</p>}
                 {formFields.map((item, index) => (
-                  <div key={item.id} className="row p-3 align-items-end">
+                  <div key={item.id} className="row pt-3 align-items-end">
                     <div className="col-md-6">
                       <label>{item.label}</label>
-
                       <div className="input-group">
                         <input
                           type="number"
@@ -196,12 +189,6 @@ const FollowUpModal = () => {
                           <span className="input-group-text">{item.unit}</span>
                         )}
                       </div>
-
-                      {errors.items?.[index]?.value && (
-                        <div className="invalid-feedback">
-                          {errors.items[index].value.message}
-                        </div>
-                      )}
                     </div>
 
                     <div className="col-md-2">

@@ -11,8 +11,8 @@ export const followUpForm = [
           { name: "weight", label: "體重", unit: "kg" },
           { name: "bmi", label: "BMI" },
           { name: "waistline", label: "腰圍", unit: "cm" },
-          { name: "sbp", label: "收縮壓" },
-          { name: "dbp", label: "舒張壓" },
+          { name: "sbp", label: "收縮壓", unit: "mmHg" },
+          { name: "dbp", label: "舒張壓", unit: "mmHg" },
         ],
       },
       {
@@ -60,9 +60,15 @@ export const followUpForm = [
         category: "blood",
         label: "血液檢查",
         fields: [
-          { name: "rbc", label: "紅血球計數(Red Blood Count)" },
-          { name: "wbc", label: "白血球計數(White Blood Count)" },
-          { name: "hemoglobin", label: "血色素(Hemoglobin)" },
+          {
+            name: "rbc",
+            label: "紅血球計數(Red Blood Count)",
+          },
+          {
+            name: "wbc",
+            label: "白血球計數(White Blood Count)",
+          },
+          { name: "hemoglobin", label: "血色素(Hemoglobin)", unit: "g/dL" },
           { name: "platelets", label: "血小板(Platelets)" },
         ],
       },
@@ -90,6 +96,17 @@ export const followUpForm = [
         category: "x_ray",
         label: "X光檢查",
         fields: [{ name: "chestXRay", label: "胸部X光(Chest X-ray)" }],
+      },
+    ],
+  },
+  {
+    system: "additional",
+    label: "其他",
+    categories: [
+      {
+        category: "custom_items",
+        label: "其他",
+        fields: [{ name: "items", label: "檢查名稱及結果" }],
       },
     ],
   },
