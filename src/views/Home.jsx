@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import ModalManager from "../component/modal/ModalManager";
 import { openModal } from "../slice/modalSlice";
 
+import HealthInfoSwiper from "../component/swiper/HealthInfoSwiper";
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -32,10 +34,8 @@ const Home = () => {
     <>
       <ModalManager />
       <div className="container">
-        <section>
-          <p>
-            section1: 健康促進最新健康促進活動or衛教資訊活動公告 swiper banner
-          </p>
+        <section className="row justify-content-center my-4">
+          <HealthInfoSwiper />
         </section>
 
         <section>

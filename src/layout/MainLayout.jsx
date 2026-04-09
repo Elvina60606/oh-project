@@ -9,7 +9,7 @@ const MainLayout = () => {
         <div className="bgLight">
           <Header />
         </div>
-        <main>
+        <main className="my-auto">
           <Outlet />
         </main>
         <div className="bgLight">
