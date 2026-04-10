@@ -1,9 +1,10 @@
 import healthReport from "./healthReport.jpg";
-import bike from "./bike.avif";
+import bike from "./bike.png";
 import cookingBaby from "./cookingBaby.avif";
 import cookingFire from "./cookingFire.avif";
 import foodSecurity from "./foodSecurity.jpg";
-import influenza from "./influenza.avif";
+import influenza from "./influenza.png";
+import yoga from "./yoga.png";
 
 const images = {
   healthReport,
@@ -12,6 +13,7 @@ const images = {
   cookingFire,
   foodSecurity,
   influenza,
+  yoga,
 };
 
 export default images;

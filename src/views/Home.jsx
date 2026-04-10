@@ -38,8 +38,12 @@ const Home = () => {
           <HealthInfoSwiper />
         </section>
 
-        <section>
-          <p>section2: 回診或訪談時間小提醒</p>
+        <section className="row justify-content-center mb-4">
+          <div className="col-8">
+            <div className="border rounded-4 p-4">
+              <h5>* 重要訊息 :</h5>
+            </div>
+          </div>
         </section>
 
         <section className="row justify-content-center mb-4">
