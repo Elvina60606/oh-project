@@ -9,9 +9,6 @@ const Footer = () => {
             <p>信箱：goodhealth@cmail.com</p>
             <p>地址： 台北市忠孝東路888號8樓 人資部門</p>
           </div>
-          <div className="col-8 text-end">
-            <p>2026-3-30 12:00</p>
-          </div>
         </div>
       </footer>
     </>

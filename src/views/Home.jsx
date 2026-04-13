@@ -34,20 +34,34 @@ const Home = () => {
     <>
       <ModalManager />
       <div className="container">
-        <section className="row justify-content-center my-4">
+        <section className="row justify-content-center my-5">
           <HealthInfoSwiper />
         </section>
 
-        <section className="row justify-content-center mb-4">
-          <div className="col-8">
-            <div className="border rounded-4 p-4">
-              <h5>* 重要訊息 :</h5>
+        <section className="row justify-content-center mb-5">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-header">
+                重要資訊
+                <i className="bi bi-calendar2-heart-fill text-danger ms-2"></i>
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">
+                  下一次健康訪談日期為 2026 / 9 / 18 ， 14：00
+                </h5>
+                <p className="card-text mb-3">
+                  若有需要調整時段，請提前一週告知。
+                </p>
+                <button type="button" className="btn btn-success">
+                  查看上一次訪談紀錄
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="row justify-content-center mb-4">
-          <div className="col-md-4">
+        <section className="row justify-content-center mb-5">
+          <div className="col-md-3">
             <button type="btn" className="btn w-100">
               <img
                 src={images.healthReport}
@@ -56,7 +70,7 @@ const Home = () => {
               />
             </button>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-3">
             <div className="d-flex flex-column justify-content-center h-100 gap-2">
               <button
                 type="button"
