@@ -1,23 +1,21 @@
-import { fieldMeta } from "./fieldMeta";
+import { fieldData } from "./fieldData";
 
 export const transformToTableData = (apiData) => {
-  const result = [];
-
   const { measurements } = apiData;
 
-  Object.entries(measurements).forEach(([group, items]) => {
-    Object.entries(items).forEach(([key, value]) => {
-      const meta = fieldMeta[key];
+  return Object.entries(measurements)
+    .map(([group, items]) =>
+      Object.entries(items).map(([key, value]) => {
+        const meta = fieldData[key];
 
-      result.push({
-        category: meta?.category || group,
-        key,
-        label: meta?.label || key,
-        value,
-        unit: meta?.unit || "",
-      });
-    });
-  });
-
-  return result;
+        return {
+          category: meta?.category || group,
+          key,
+          label: meta?.label || key,
+          value,
+          unit: meta?.unit || "",
+        };
+      }),
+    )
+    .flat();
 };

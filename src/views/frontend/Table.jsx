@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import { columns } from "../../component/frontend/table/columns";
+import { transformToTableData } from "../../component/frontend/table/transformToTableData";
+import fakeData from "../../data//fakeData.json";
 
 import {
   useReactTable,
@@ -8,70 +10,13 @@ import {
 } from "@tanstack/react-table";
 
 const Table = () => {
-  const data = [
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "身高 Body Height",
-      check_up_data: 160,
-      check_up_unit: "cm",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "體重 Body Weight",
-      check_up_data: 50,
-      check_up_unit: "kg",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "身體質量指數 BMI",
-      check_up_data: 22,
-      check_up_unit: "",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "腰圍 Waistline",
-      check_up_data: 65,
-      check_up_unit: "cm",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "收縮壓 Systolic Pressure",
-      check_up_data: 125,
-      check_up_unit: "mmHg",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "一般理學檢查",
-      check_up_item: "舒張壓 Diastolic Pressure",
-      check_up_data: 88,
-      check_up_unit: "mmHg",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "血液生化檢查",
-      check_up_item: "空腹血糖 AC Sugar",
-      check_up_data: 50,
-      check_up_unit: "mg/dL",
-      check_up_chart: "",
-    },
-    {
-      check_up_category: "尿液檢查",
-      check_up_item: "尿蛋白 Urine Protein",
-      check_up_data: "-",
-      check_up_unit: "",
-      check_up_chart: "",
-    },
-  ];
+  const data = transformToTableData(fakeData);
 
   const groupedData = data.reduce((acc, item) => {
-    if (!acc[item.check_up_category]) {
-      acc[item.check_up_category] = [];
+    if (!acc[item.category]) {
+      acc[item.category] = [];
     }
-    acc[item.check_up_category].push(item);
+    acc[item.category].push(item);
     return acc;
   }, {});
 

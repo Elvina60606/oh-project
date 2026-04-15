@@ -1,6 +1,6 @@
 export const columns = [
   {
-    accessorKey: "check_up_item",
+    accessorKey: "label",
     header: "項目",
     size: 220,
     minSize: 100,
@@ -9,7 +9,7 @@ export const columns = [
     },
   },
   {
-    accessorKey: "check_up_data",
+    accessorKey: "value",
     header: "檢查值",
     size: 1,
     minSize: 80,
@@ -18,7 +18,7 @@ export const columns = [
     },
   },
   {
-    accessorKey: "check_up_unit",
+    accessorKey: "unit",
     header: "單位",
     size: 1,
     minSize: 80,
@@ -27,7 +27,7 @@ export const columns = [
     },
   },
   {
-    accessorKey: "check_up_chart",
+    accessorKey: "chart",
     header: "趨勢圖",
     size: 1,
     minSize: 80,
@@ -36,6 +36,3 @@ export const columns = [
     },
   },
 ];
-
-修改column;
-套入新的data;
