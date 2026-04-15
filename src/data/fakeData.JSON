@@ -1,0 +1,49 @@
+{
+  "checkUpDate": "2026-04-15",
+  "checkUpCenter": "Taipei Medical Center",
+
+  "measurements": {
+    "physical_exam": {
+      "height": 160,
+      "weight": 50,
+      "bmi": 22,
+      "waistline": 65,
+      "sbp": 125,
+      "dbp": 88,
+      "right_va": "1.0",
+      "left_va": "1.0",
+      "right_bcva": "1.2",
+      "left_bcva": "1.2",
+      "color_vision": "normal",
+      "hearing_test": "normal"
+    },
+
+    "biochemistry": {
+      "alt": 18,
+      "ac_sugar": 90,
+      "creatinine": 0.9,
+      "cholesterol": 180,
+      "triglycerides": 120,
+      "hdl": 55,
+      "ldl": 110
+    },
+
+    "blood_test": {
+      "rbc": 4.8,
+      "wbc": 6500,
+      "hemoglobin": 14.2,
+      "platelets": 250000
+    },
+
+    "urine_test": {
+      "urine_protein": "-",
+      "urine_ob": "-"
+    }
+  },
+
+  "chest_xray": {
+    "result": "normal"
+  },
+
+  "suggestion": "No significant abnormal findings"
+}
